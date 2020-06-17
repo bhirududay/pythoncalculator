@@ -2,7 +2,7 @@ import tkinter as tk
 import math
 
 
-
+#-----------------------------creating a window--------------------------------
 window = tk.Tk()
 window.title('Calculator')
 window.geometry('680x297')
@@ -10,24 +10,27 @@ window.resizable(width=False, height=False)
 
 
 
-#input and display bar
+#--------input and display bar---------------
+
 bar = tk.Entry(window, width=110, borderwidth=3)
 bar.grid(row=0, column=0, padx=5, pady=5, columnspan=7)
 
 
 
-#button functions
+#------------------0-9 number buttons function---------------------------------
 def num(n):
     current = bar.get()
     bar.delete(0, tk.END)
     bar.insert(0, str(current)+str(n))
-    
+
+#---------------------operator button function--------------------------------    
 def getnum(opr):
     global num1, operator
     num1 = float(bar.get())
     bar.delete(0, tk.END)
     operator = opr
 
+#----------------------equal button function-----------------------------------
 def equal(n):
     if(n =='add'):
         ans = num1 + float(bar.get())
@@ -39,10 +42,12 @@ def equal(n):
         ans = num1 / float(bar.get())
     bar.delete(0, tk.END)
     bar.insert(0, str(ans))
-    
+
+#------------------------clear button function--------------------------------
 def clr():
     bar.delete(0, tk.END)
 
+#-------------------degree/radians button function----------------------------
 t=0
 unit='degree'
 def angle():
@@ -52,6 +57,7 @@ def angle():
     unit = dr[t]
     button_angle.configure(text=unit)
     
+#----------------------------tan button function-------------------------------
 def tan():
     angle = float(bar.get())
     bar.delete(0, tk.END)
@@ -63,7 +69,8 @@ def tan():
         
     else:
         bar.insert(0, 'INVALID')
-        
+
+#----------------------------cos button function-------------------------------
 def cos():
     angle = float(bar.get())
     bar.delete(0, tk.END)
@@ -72,6 +79,7 @@ def cos():
     else:
         bar.insert(0, round(math.cos(angle),6))
 
+#----------------------------sin button function-------------------------------
 def sin():
     angle = float(bar.get())
     bar.delete(0, tk.END)
@@ -80,6 +88,7 @@ def sin():
     else:
         bar.insert(0, round(math.sin(angle),6))
 
+#----------------------------cot button function-------------------------------
 def cot():
     angle = float(bar.get())
     bar.delete(0, tk.END)
@@ -92,6 +101,7 @@ def cot():
     else:
         bar.insert(0, 'INVALID')
 
+#--------------------------cosec button function-------------------------------
 def cosec():
     angle = float(bar.get())
     bar.delete(0, tk.END)
@@ -104,6 +114,7 @@ def cosec():
     else:
         bar.insert(0, 'INVALID')
 
+#----------------------------sec button function-------------------------------
 def sec():
     angle = float(bar.get())
     bar.delete(0, tk.END)
@@ -116,19 +127,21 @@ def sec():
     else:
         bar.insert(0, 'INVALID')
 
+#----------------------------memory button function----------------------------
 def memory():
     global mem
     mem = float(bar.get())
     mem = format(mem, '.20f')
     button_mu.configure(text=str(mem)[0:11])
 
+#--------------------------memory use button function--------------------------
 def memuse():
     bar.delete(0, tk.END)
     bar.insert(0, mem)
 
 
 
-#button declaration
+#-------------------------buttons creations-----------------------------------
 button_0 = tk.Button(text=0, padx=88, pady=20, command=lambda: num(0))
 button_1 = tk.Button(text=1, padx=40, pady=20, command=lambda: num(1))
 button_2 = tk.Button(text=2, padx=40, pady=20, command=lambda: num(2))
@@ -159,7 +172,7 @@ button_mu = tk.Button(text=('                     '), padx=10, pady=20, command=
 
 
 
-#button inserting
+#---------------------------button inserting----------------------------------
 button_1.grid(row=3, column=0, padx=1, pady=1)
 button_2.grid(row=3, column=1, padx=1, pady=1)
 button_3.grid(row=3, column=2, padx=1, pady=1)
@@ -189,5 +202,5 @@ button_mem.grid(row=4, column=5, padx=1, pady=1, columnspan=1)
 button_mu.grid(row=4, column=6, padx=1, pady=1)
 
 
-
+#-----------------------------looping------------------------------------------
 window.mainloop()
