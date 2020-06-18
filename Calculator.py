@@ -118,11 +118,11 @@ def cosec():
 def sec():
     angle = float(bar.get())
     bar.delete(0, tk.END)
-    if(unit == 'degree' and angle%180!=0 or angle==0):
-        bar.insert(0, round(1/math.sin(math.radians(angle)),6))    
+    if(unit == 'degree' and angle%90!=0 or angle==0):
+        bar.insert(0, round(1/math.cos(math.radians(angle)),6))    
     
-    elif((unit == 'radian' and round(math.degrees(angle), 3)%180!=0)):
-        bar.insert(0, round(1/math.sin(angle),6))
+    elif((unit == 'radian' and round(math.degrees(angle), 3)%90!=0)):
+        bar.insert(0, round(1/math.cos(angle),6))
     
     else:
         bar.insert(0, 'INVALID')
